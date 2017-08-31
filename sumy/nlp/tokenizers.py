@@ -78,10 +78,7 @@ class Tokenizer(object):
             path = to_string("tokenizers/punkt/%s.pickle") % to_string(language)
             return nltk.data.load(path)
         except (LookupError, zipfile.BadZipfile):
-            raise LookupError(
-                "NLTK tokenizers are missing. Download them by following command: "
-                '''python -c "import nltk; nltk.download('punkt')"'''
-            )
+            nltk.download('punkt')
 
     def _get_word_tokenizer(self, language):
         if language in self.SPECIAL_WORD_TOKENIZERS:
