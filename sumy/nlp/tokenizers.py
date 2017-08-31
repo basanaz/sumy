@@ -78,7 +78,9 @@ class Tokenizer(object):
             path = to_string("tokenizers/punkt/%s.pickle") % to_string(language)
             return nltk.data.load(path)
         except (LookupError, zipfile.BadZipfile):
+            path = to_string("tokenizers/punkt/%s.pickle") % to_string(language)
             nltk.download('punkt')
+            return nltk.data.load(path)
 
     def _get_word_tokenizer(self, language):
         if language in self.SPECIAL_WORD_TOKENIZERS:
